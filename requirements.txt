@@ -1,0 +1,7 @@
+bs4
+Django>=3.0,<4.0
+psycopg2-binary>=2.8
+celery==4.4.2
+redis
+lxml
+celery_progress

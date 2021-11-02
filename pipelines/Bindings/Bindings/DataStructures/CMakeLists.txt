@@ -1,0 +1,1 @@
+add_library(data_structures AminoAcids.cpp FragmentWeightMatrix.cpp Peak.cpp PeptideSequence.cpp SpectrumGraph.h SpectrumGraph.cpp)

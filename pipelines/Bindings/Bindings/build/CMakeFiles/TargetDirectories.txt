@@ -1,0 +1,8 @@
+C:/Users/Kassim Santone/source/repos/Bindings/Bindings/build/CMakeFiles/rebuild_cache.dir
+C:/Users/Kassim Santone/source/repos/Bindings/Bindings/build/CMakeFiles/denovo_sequencing.dir
+C:/Users/Kassim Santone/source/repos/Bindings/Bindings/build/CMakeFiles/edit_cache.dir
+C:/Users/Kassim Santone/source/repos/Bindings/Bindings/build/pybind11/CMakeFiles/edit_cache.dir
+C:/Users/Kassim Santone/source/repos/Bindings/Bindings/build/pybind11/CMakeFiles/rebuild_cache.dir
+C:/Users/Kassim Santone/source/repos/Bindings/Bindings/build/DataStructures/CMakeFiles/data_structures.dir
+C:/Users/Kassim Santone/source/repos/Bindings/Bindings/build/DataStructures/CMakeFiles/edit_cache.dir
+C:/Users/Kassim Santone/source/repos/Bindings/Bindings/build/DataStructures/CMakeFiles/rebuild_cache.dir
