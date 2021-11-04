@@ -5,8 +5,7 @@ RUN pip install -r requirements.txt
 RUN cd pipelines/MyBindings/build
 RUN apt-get update -y
 RUN apt-get update
-RUN apt-get install cmake
-RUN rm CMakeCache.txt
+RUN yes y | apt-get install cmake
 RUN cmake ..
 RUN make
 
