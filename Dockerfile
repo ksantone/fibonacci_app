@@ -7,5 +7,6 @@ RUN apt-get update
 RUN yes y | apt-get install cmake
 RUN cd pipelines/MyBindings/build; rm CMakeCache.txt
 RUN cd pipelines/MyBindings/build; cmake ..; make; mv denovo_sequencing.cpython-39-x86_64-linux-gnu.so denovo_sequencing.so
+ENV PATH=$PATH:/usr/src/app/pipelines/MyBindings/build/denovo_sequencing.so
 
 CMD [ "python", "./manage.py", "runserver", "0.0.0.0:8000" ]
