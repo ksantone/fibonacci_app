@@ -1,3 +1,6 @@
 [submodule "pipelines/Bindings/Bindings/pybind11"]
 	path = pipelines/Bindings/Bindings/pybind11
 	url = https://github.com/pybind/pybind11.git
+[submodule "pipelines/MyBindings"]
+	path = pipelines/MyBindings
+	url = https://github.com/ksantone/MyBindings.git
