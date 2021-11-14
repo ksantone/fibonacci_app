@@ -9,8 +9,8 @@ COPY . .
 
 RUN pip install -r requirements.txt
 
-RUN mkdir pipelines/MyBindings/build \
-    && cd pipelines/MyBindings/build \
+RUN mkdir pipelines/BioLib/build \
+    && cd pipelines/BioLib/build \
     && cmake .. \
     && make \
     && mv denovo_sequencing.*.so /app/denovo_sequencing.so

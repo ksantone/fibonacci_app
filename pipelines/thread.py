@@ -8,7 +8,7 @@ from django.core.files import File
 from django.conf import settings
 from queue import Queue
 
-from .MyBindings.build import run_denovo
+from .DeNovo import run_denovo
 from celery import shared_task
 from celery.task import Task
 from celery_progress.backend import ProgressRecorder
@@ -48,19 +48,45 @@ class CreatePipelineTasks(threading.Thread):
             processor = Processor.delay(mzml_contents)
             print("Right after processor.")
             print(self.algorithms)
+            print("Now, now...")
             processes = begin_pipeline_execution(self.title, self.algorithms, self.inputs)
             tasks = []
+            print("After, after...")
             algorithms_to_task_ids = {}
             algorithms_to_task_ids["Spectral"] = processor.task_id
             print("Why?")
             print(processes)
-            for process in processes:
-                task = run_pipeline.delay(process)
-                algorithms_to_task_ids[process[0].split("/")[-1]] = task.task_id
+            #for process in processes:
+            task = run_pipeline.delay(processes[0])
+            get_log_info.delay()
+            algorithms_to_task_ids[processes[0][0].split("/")[-1]] = task.task_id
             self.queue.put(algorithms_to_task_ids)
             print("And how?")
         except Exception as e:
             print(e)
+
+@shared_task(bind=True)
+def get_log_info(self):
+    logging_file = os.path.join(base_dir, "logging.txt")
+    print(os.path.join(base_dir, "logging.txt"))
+    print(logging_file)
+    num_lines = 0
+    progress_recorder = ProgressRecorder(self)
+    print(os.path.isfile(logging_file))
+    while not os.path.isfile(logging_file):
+        i = 5
+        print(i)
+    print(os.path.isfile(logging_file))
+    while True:
+        num_lines = sum(1 for line in open(logging_file, "r"))
+        if num_lines==371:
+            print("About to break!")
+            break
+        print("Num lines")
+        print(num_lines)
+        progress_recorder.set_progress(num_lines, 371, f'DeNovo sequencing')
+    print("Out of while loop...")
+    print(num_lines)
 
 def begin_pipeline_execution(title, algorithms, inputs):
     processes = []
@@ -97,29 +123,7 @@ def run_pipeline(self, process):
     if len(process)==2:
         print("In the pipeline run...")
         run_denovo.run_denovo_func()
-        '''logging_file = settings.LOGGINGFILES_DIRS[0]+"/logging.txt"
-        print(logging_file)
-        num_lines = 0
-        progress_recorder = ProgressRecorder(self)
-        while not num_lines==370:
-            print("In while loop...")
-            if os.path.isfile(logging_file):
-                num_lines = sum(1 for line in open(logging_file, "r"))
-                print("Num lines")
-                print(num_lines)
-            if num_lines > 0:
-                print(line)
-            progress_recorder.set_progress(num_lines, 371, f'DeNovo sequencing')
-        print("Out of while loop...")
-        print(num_lines)
-        if proc.returncode==0:
-            out, err = proc.communicate()
-            print('out: {0}'.format(out))
-            print('error: {0}'.format(err))
-        else:
-            print(proc.returncode)
     return 'Done'
-'''
 
 class Processor(Task):
     instrument = ""

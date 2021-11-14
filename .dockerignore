@@ -1,5 +1,3 @@
-pipelines/MyBindings/build/**
-pipelines/MyBindings/build/
 .dockerignore
 Dockerfile
 *.swp

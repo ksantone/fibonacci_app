@@ -1,4 +1,5 @@
-#import denovo_sequencing
+import sys
+import denovo_sequencing
 
 def run_denovo_func():
-    i = 2
+	denovo_sequencing.main()
